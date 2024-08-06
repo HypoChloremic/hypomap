@@ -10,4 +10,4 @@ INCLUDE_DIR="-I./include"
 
 mkdir -p build
 
-$CC $INCLUDE_DIR ./src/main.cpp ./src/controls.cpp ./src/buffering.cpp ./src/file_handling.cpp ./src/cleaning.cpp ./common/loadShader.cpp $CFLAGS $LDFLAGS -o ./build/progr
+$CC $INCLUDE_DIR ./src/main.cpp ./src/setup.cpp ./src/controls.cpp ./src/buffering.cpp ./src/file_handling.cpp ./src/cleaning.cpp ./common/loadShader.cpp $CFLAGS $LDFLAGS -o ./build/progr
