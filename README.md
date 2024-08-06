@@ -1,2 +1,2 @@
 # hypomap
-An OpenGL map renderer in C++
+A map renderere in C++ using OpenGL
