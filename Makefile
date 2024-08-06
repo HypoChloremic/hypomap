@@ -14,5 +14,10 @@ build:
 	@echo "$(GREEN)==============================$(NO_COLOR)"
 
 run:
-	@echo "Running the program..."
-	./progr
+	@echo "$(GREEN)==============================$(NO_COLOR)"
+	@echo "$(GREEN)====   $(GREEN)Running$(GREEN)   ====$(NO_COLOR)"
+	@echo "$(GREEN)==============================$(NO_COLOR)\n"
+	./build/progr ./data/raw.bin
+	@echo "\n$(GREEN)==============================$(NO_COLOR)"
+	@echo "$(GREEN)====   $(YELLOW)Completed!$(GREEN)   ====$(NO_COLOR)"
+	@echo "$(GREEN)==============================$(NO_COLOR)"
