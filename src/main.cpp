@@ -1,8 +1,5 @@
-#include <exception>
 #include <fstream>
 #include <iostream>
-#include <stdexcept>
-#include <stdio.h>
 #include <stdlib.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -18,7 +15,6 @@
 #include "setup.hpp"
 
 using namespace glm;
-
 
 const GLfloat BASE_LAT = 59.2373418; 
 const GLfloat BASE_LON = 17.8365887;
@@ -54,13 +50,8 @@ int main(int argc, char** argv){
   draw_triangle(&VertexArrayID, &vertexbuffer, coordinates);
 
   GLuint programID = LoadShaders("./shaders/vertex_shader.vert", "./shaders/fragment_shader.frag");
-  // glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-  glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-
   GLuint MatrixID = glGetUniformLocation(programID, "MVP");
   GLuint UniformColorID = glGetUniformLocation(programID, "uniformcolor"); 
-
-  float i = 0.0f;
 
   do {
     glClear( GL_COLOR_BUFFER_BIT );
@@ -93,12 +84,6 @@ int main(int argc, char** argv){
     glDisableVertexAttribArray(0);
     glfwSwapBuffers(window);
     glfwPollEvents();
-
-    if(i > 1){
-      i = 0.0f;
-    } else {
-      i += 0.01f;
-    }
 
   } while( 
   glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS 
