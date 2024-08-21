@@ -3,11 +3,12 @@
 #include <stdlib.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#define GLM_FORCE_PURE
 #include <glm/glm.hpp>
-#include "shader.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include <string>
 #include <vector>
+#include "shader.hpp"
 #include "file_handling.hpp"
 #include "buffering.hpp"
 #include "cleaning.hpp"
@@ -18,6 +19,9 @@ using namespace glm;
 
 const GLfloat BASE_LAT = 59.2373418; 
 const GLfloat BASE_LON = 17.8365887;
+
+// const GLfloat BASE_LAT = 59.0; 
+// const GLfloat BASE_LON = 17.0;
 
 
 int main(int argc, char** argv){
@@ -56,7 +60,7 @@ int main(int argc, char** argv){
   do {
     glClear( GL_COLOR_BUFFER_BIT );
     glUseProgram(programID);
-    
+
     // Compute the MVP matrix from keyboard and mouse input
     computeMatricesFromInputs(window);
     glm::mat4 ProjectionMatrix = getProjectionMatrix();
