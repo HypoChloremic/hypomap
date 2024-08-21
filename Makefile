@@ -21,3 +21,12 @@ run:
 	@echo "\n$(GREEN)==============================$(NO_COLOR)"
 	@echo "$(GREEN)====   $(YELLOW)Completed!$(GREEN)   ====$(NO_COLOR)"
 	@echo "$(GREEN)==============================$(NO_COLOR)"
+
+bwasm:
+	@echo "$(GREEN)==============================$(NO_COLOR)"
+	@echo "$(GREEN)====   $(GREEN)Building Project$(GREEN)   ====$(NO_COLOR)"
+	@echo "$(GREEN)==============================$(NO_COLOR)\n"
+	bash buildwasm.sh
+	@echo "\n$(GREEN)==============================$(NO_COLOR)"
+	@echo "$(GREEN)====   $(YELLOW)Build Completed!$(GREEN)   ====$(NO_COLOR)"
+	@echo "$(GREEN)==============================$(NO_COLOR)"
