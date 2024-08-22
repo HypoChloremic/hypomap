@@ -34,11 +34,11 @@ float mouseSpeed = 1e-5f;
 
 float oLeft = -0.1f;
 float oRight = 0.1f;
-float oBottom = -0.1f;
-float oTop = 0.1f;
+float oBottom = -0.0f;
+float oTop = 0.0f;
 float oNear = 0.01f;
 float oFar = 100.0f;
-float zoom = 2.0f;
+float zoom = 5.0f;
 
 float rotation = 0.0f;
 
@@ -72,10 +72,11 @@ void computeMatricesFromInputs(GLFWwindow* window){
 		cos(horizontalAngle - 3.14f/2.0f)
 	);
 	
-	glm::vec3 up = glm::cross( right, direction );
+	// glm::vec3 up = glm::cross( right, direction );
+	glm::vec3 up = {0.0f, 1.0f, 0.0f};
 	
 	if (glfwGetKey(window, GLFW_KEY_UP ) == GLFW_PRESS){
-		position += direction * deltaTime * speed;
+		// position += direction * deltaTime * speed;
 		oTop -= oTop * deltaTime * speed;
 		oBottom -= oBottom * deltaTime * speed;
 	}
@@ -132,7 +133,8 @@ void computeMatricesFromInputs(GLFWwindow* window){
 
 	glfwSetScrollCallback(window, scroll_callback);
 
-	ProjectionMatrix = glm::ortho(oLeft/zoom, oRight/zoom, oBottom/zoom, oTop/zoom, oNear/zoom, oFar/zoom);
+	// ProjectionMatrix = glm::ortho(oLeft/zoom, oRight/zoom, oBottom/zoom, oTop/zoom, oNear/zoom, oFar/zoom);
+	ProjectionMatrix = glm::ortho(-1.0f/zoom, 1.0f/zoom, -1.0f/zoom, 1.0f/zoom, 0.1f/zoom, 100.0f/zoom);
 	ViewMatrix = glm::lookAt(
 		position,
 		position+direction,
