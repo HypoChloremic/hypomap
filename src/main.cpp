@@ -17,11 +17,11 @@
 
 using namespace glm;
 
-const GLfloat BASE_LAT = 59.2373418; 
-const GLfloat BASE_LON = 17.8365887;
+// const GLfloat BASE_LAT = 59.2373418; 
+// const GLfloat BASE_LON = 17.8365887;
 
-// const GLfloat BASE_LAT = 59.0; 
-// const GLfloat BASE_LON = 17.0;
+const GLfloat BASE_LAT = 0.0;
+const GLfloat BASE_LON = 0.0;
 
 
 int main(int argc, char** argv){
@@ -57,6 +57,19 @@ int main(int argc, char** argv){
   GLuint MatrixID = glGetUniformLocation(programID, "MVP");
   GLuint UniformColorID = glGetUniformLocation(programID, "uniformcolor"); 
 
+
+  glm::mat4 test_0 = getProjectionMatrix();
+  glm::mat4 test_1 = getViewMatrix();
+  glm::mat4 test_2 = getRotationMatrix();
+  glm::mat4 test_4 = glm::mat4(1.0f);
+  glm::mat4 test_3 = test_4 * 2.0f;// test_2 * test_0 * test_1 * test_4;
+  for(int i = 0; i < 4; i++) {
+    for(int j = 0; j < 4; j++) {
+      std::cout << test_3[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
+
   do {
     glClear( GL_COLOR_BUFFER_BIT );
     glUseProgram(programID);
@@ -65,9 +78,16 @@ int main(int argc, char** argv){
     computeMatricesFromInputs(window);
     glm::mat4 ProjectionMatrix = getProjectionMatrix();
     glm::mat4 ViewMatrix = getViewMatrix();
-    glm::mat4 ModelMatrix = glm::mat4(1.0);
+    // glm::mat4 ModelMatrix = glm::mat4(1.0);
     glm::mat4 RotationMatrix = getRotationMatrix();
-    glm::mat4 MVP = RotationMatrix * ProjectionMatrix * ViewMatrix * ModelMatrix;
+    glm::mat4 MVP = RotationMatrix * ProjectionMatrix * ViewMatrix;//* ModelMatrix;
+
+    for(int i = 0; i < 4; i++) {
+      for(int j = 0; j < 4; j++) {
+        std::cout << MVP[i][j] << " ";
+      }
+      std::cout << std::endl;
+    }
 
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
@@ -83,7 +103,7 @@ int main(int argc, char** argv){
     );
 
     glUniform3f(UniformColorID, 1.0f, 0.0f, 0.0f);
-    glDrawArrays(GL_POINTS, 0, coordinates.size()/2);
+    glDrawArrays(GL_LINES, 0, coordinates.size()/2);
 
     glDisableVertexAttribArray(0);
     glfwSwapBuffers(window);
